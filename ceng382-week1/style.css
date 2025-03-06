@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin:0px;
     padding: 0;
     box-sizing: border-box;
     height: 100vh;
@@ -13,14 +13,70 @@ body {
     text-align: center;
     font-family: 'Arial', sans-serif;
 }
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;  /* Üçgenin sol kenarı */
+    border-right: 160px solid transparent; /* Üçgenin sağ kenarı */
+    border-bottom: 280px solid #ff0055;    /* Üçgenin ana kısmı */
+    position: relative;
+    animation: rotateTriangle 3s linear infinite; /* Animasyonu ekledik */
+}
+
+.triangle::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: -140px;
+    width: 0;
+    height: 0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-bottom: 240px solid transparent; /* İç boşluk (arka plan siyah) */
+}
+@keyframes rotateTriangle {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+.circle {
+    width: 320px;
+    height: 320px;
+    border: 10px solid #ff0055;
+    border-radius: 50%; /* Daire Yapımı */
+    background-color: transparent;
+    animation: rotateCircle 3s linear infinite;
+}
+@keyframes rotateCircle {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
 .wrapper {
-    width: 420px;
+    width: 320px;
     background: transparent;
-    border: 2px solid rgba(0, 0, 0, 0.3);
+    border: 8px solid #ff0055;
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px ;
     color: azure;
+    animation: rotateWrapper 3s linear forwards;
 
+}
+@keyframes rotateWrapper {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
 }
 
 .wrapper h1 {
@@ -73,6 +129,16 @@ body {
     border: none;
     outline: none;
     border-radius: 40px;
+    cursor: pointer;
+    animation: animatebutton 0.5s steps(1) infinite;
 
 
+}
+@keyframes animatebutton{
+    0%,94%,100%{
+        filter:none;
+    }
+    95%{
+        filter:drop-shadow(0 0 50px azure) drop-shadow(0 0 150px azure);
+    }
 }
