@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Squid Game Temalı Sayfa</title>
+   
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
+    
+    <div class="triangle"></div>
+    
     <div class="wrapper">
         <form action="">
             <h1>Login</h1>
@@ -24,4 +28,14 @@
             <button type="submit" class="btn">Login</button>        
         </form>
     </div>
+    <div class="circle"></div>
+    <script>
+        document.addEventListener("keydown", function(event) {
+            if (event.key.toLowerCase() === "h") { 
+                document.querySelectorAll("form").forEach(form => {
+                    form.style.display = (form.style.display === "none") ? "block" : "none";
+                });
+            }
+        });
+    </script>
 </body>
