@@ -4,16 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Squid Game Temalı Sayfa</title>
-   
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script type="text/javascript">
+        window.onload = startTime;
+        function startTime()
+        {
+         var today=new Date();
+         var h=today.getHours();
+         var m=today.getMinutes();
+         var s=today.getSeconds();
+        
+         h=checkTime(h);
+         m=checkTime(m);
+         s=checkTime(s);
+         document.getElementById('saat').innerHTML=h+":"+m+":"+s;
+         t=setTimeout('startTime()',1000);
+        }
+        
+        function checkTime(i)
+        {
+        if (i<10)
+         {
+          i="0" + i;
+         }
+        return i;
+        }
+        </script>
 </head>
 
 <body>
     
-    <div class="triangle"></div>
+       
     
     <div class="wrapper">
+        <p id="saat"></p>
         <form action="">
             <h1>Login</h1>
             <div class="input-box">
@@ -28,7 +53,6 @@
             <button type="submit" class="btn">Login</button>        
         </form>
     </div>
-    <div class="circle"></div>
     <script>
         document.addEventListener("keydown", function(event) {
             if (event.key.toLowerCase() === "h") { 
