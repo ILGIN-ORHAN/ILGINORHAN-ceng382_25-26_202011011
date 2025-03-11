@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Table</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -13,17 +13,19 @@
         <form action="">
             <h1>Login</h1>
             <div class="input-box">
-                <input type="text" placeholder="Username" required>
+                <input type="text" placeholder="Class Name" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="text" placeholder="Password" required>
+                <input type="text" placeholder="Number of People" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Description" required>
                 <i class='bx bxs-lock-alt' ></i>
             </div>
 
-            <form method="POST" action="table.html">  
-                <input type="submit"/>  
-            </form>       
+            <button type="submit" class="btn">Login</button>        
         </form>
     </div>
 </body>
