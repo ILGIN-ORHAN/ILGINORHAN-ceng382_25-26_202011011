@@ -13,19 +13,83 @@
         <form action="">
             <h1>Login</h1>
             <div class="input-box">
-                <input type="text" placeholder="Class Name" required>
-                <i class='bx bxs-user'></i>
+                <input type="text" id='className' placeholder="Class Name" required>
+                
             </div>
             <div class="input-box">
-                <input type="text" placeholder="Number of People" required>
-                <i class='bx bxs-lock-alt' ></i>
+                <input type="text" id='numPeople' placeholder="Number of People" required>
+                
             </div>
             <div class="input-box">
-                <input type="text" placeholder="Description" required>
-                <i class='bx bxs-lock-alt' ></i>
+                <input type="text" id='description' placeholder="Description" required>
+                
             </div>
 
-            <button type="submit" class="btn">Login</button>        
+            <button type="submit" class="btn">Add Class</button>        
         </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Number of People</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="classTable">
+                <!-- Dinamik olarak satırlar buraya eklenecek -->
+            </tbody>
+        </table>
     </div>
+
+    <script>
+        document.getElementById('classForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Input değerlerini al
+            const className = document.getElementById('className').value;
+            const numPeople = document.getElementById('numPeople').value;
+            const description = document.getElementById('description').value;
+
+            // Yeni tablo satırı oluştur
+            const table = document.getElementById('classTable');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${className}</td>
+                <td>${numPeople}</td>
+                <td>${description}</td>
+                <td>
+                    <button class="delete-btn">Delete</button>
+                </td>
+            `;
+
+            // Satırı tabloya ekle
+            table.appendChild(row);
+
+            // Formu temizle
+            document.getElementById('classForm').reset();
+        });
+
+        // Click Event - Delete Button
+        document.getElementById('classTable').addEventListener('click', function (event) {
+            if (event.target.classList.contains('delete-btn')) {
+                event.target.parentElement.parentElement.remove();
+            }
+        });
+
+        // Hover Event - Table Row Highlight
+        document.getElementById('classTable').addEventListener('mouseover', function (event) {
+            if (event.target.tagName === 'TD') {
+                event.target.parentElement.style.backgroundColor = '#f0f0f0';
+            }
+        });
+
+        document.getElementById('classTable').addEventListener('mouseout', function (event) {
+            if (event.target.tagName === 'TD') {
+                event.target.parentElement.style.backgroundColor = '';
+            }
+        });
+    </script>
 </body>
