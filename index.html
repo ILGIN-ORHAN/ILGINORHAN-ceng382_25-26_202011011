@@ -1,43 +1,30 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Diğer gerekli stil dosyaları (Bootstrap, FontAwesome vs) -->
 </head>
-
 <body>
-    <div class="wrapper">
-        <form action="">
-            <h1>Login</h1>
-            <div class="input-box">
-                <input type="text"  id="username" placeholder="Username" required>
-                <i class='bx bxs-user'></i>
-            </div>
-            <div class="input-box">
-                <input type="text"  id="password" placeholder="Password" required>
-                <i class='bx bxs-lock-alt' ></i>
-            </div>
 
-            <button type="submit" class="btn" id="loginBtn">Login</button> 
-             
-        </form>
-    </div>
+  <!-- Buraya login form içeriğini ekle -->
+  <div class="login-form">
+    <!-- Şablondan alınan form buraya -->
+    <form action="table.html" method="POST">
+      <h2 class="text-center">Giriş Yap</h2>       
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Kullanıcı Adı" required="required" name="username">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Şifre" required="required" name="password">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Giriş</button>
+      </div>   
+    </form>
+  </div>
 
-    <script>
-        document.getElementById('loginBtn').addEventListener('click', function () {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
-
-            if (username !== ' ' && password !== ' ') {
-                window.location.href = 'table.html';
-            } else {
-                errorMessage.textContent = 'Invalid username or password!';
-                errorMessage.style.color = 'red';
-            }
-        });
-    </script>
 </body>
+</html>
