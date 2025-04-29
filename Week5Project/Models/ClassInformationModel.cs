@@ -14,6 +14,8 @@ namespace Week5Project.Models
 
     [Required]
     public string Description { get; set; }
+
+    public int HiddenId { get; set; } // Used for actions but not displayed
 }
 
 }
