@@ -78,6 +78,29 @@
 
             <!-- Right: Filter + Table + Pagination -->
             <div class="col-md-8">
+                <form method="post" asp-page-handler="Export" class="mb-3">
+    <input type="hidden" name="filtered" value="false" />
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="SelectedColumns" value="ClassName" id="colClassName" />
+        <label class="form-check-label" for="colClassName">Class Name</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="SelectedColumns" value="StudentCount" id="colStudentCount" />
+        <label class="form-check-label" for="colStudentCount">Student Count</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="SelectedColumns" value="Description" id="colDescription" />
+        <label class="form-check-label" for="colDescription">Description</label>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success mt-2">Export All as JSON</button>
+</form>
+
+<form method="post" asp-page-handler="Export">
+    <input type="hidden" name="filtered" value="true" />
+    <button type="submit" class="btn btn-warning mb-3">Export Filtered as JSON</button>
+</form>
+
                 <!-- Filter -->
                 <div class="card mb-3">
                     <div class="card-body">

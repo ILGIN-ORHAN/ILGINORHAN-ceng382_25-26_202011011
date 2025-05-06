@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Text.Json;
+using Week5Project.Helpers;
+
 
 namespace Week5Project.Pages
 {
@@ -28,6 +31,10 @@ namespace Week5Project.Pages
 
         [BindProperty(SupportsGet = true)]
         public int? MaxStudentFilter { get; set; }
+
+        [BindProperty]
+        public List<string> SelectedColumns { get; set; } = new List<string>();
+
 
         // Pagination properties
         public PaginatedList<ClassInformationTable> PaginatedClasses { get; set; }
@@ -71,6 +78,40 @@ namespace Week5Project.Pages
             CurrentPage = pageIndex;
             TotalPages = (int)Math.Ceiling(filteredData.Count() / (double)PageSize);
         }
+
+         public IActionResult OnPostExport(bool filtered)
+        {
+            IQueryable<ClassInformationModel> data = ClassList.AsQueryable();
+
+            if (filtered)
+            {
+                if (!string.IsNullOrEmpty(ClassNameFilter))
+                    data = data.Where(c => c.ClassName.Contains(ClassNameFilter));
+
+                if (MinStudentFilter.HasValue)
+                    data = data.Where(c => c.StudentCount >= MinStudentFilter.Value);
+
+                if (MaxStudentFilter.HasValue)
+                    data = data.Where(c => c.StudentCount <= MaxStudentFilter.Value);
+            }
+
+            var exportData = data.ToList().Select(item =>
+            {
+                var result = new Dictionary<string, object>();
+                if (SelectedColumns.Count == 0 || SelectedColumns.Contains("ClassName"))
+                    result["ClassName"] = item.ClassName;
+                if (SelectedColumns.Count == 0 || SelectedColumns.Contains("StudentCount"))
+                    result["StudentCount"] = item.StudentCount;
+                if (SelectedColumns.Count == 0 || SelectedColumns.Contains("Description"))
+                    result["Description"] = item.Description;
+                return result;
+            });
+
+            var json = Utils.Instance.ExportToJson(exportData);
+            var bytes = System.Text.Encoding.UTF8.GetBytes(json);
+            return File(bytes, "application/json", "classes.json");
+        }
+
 
         public IActionResult OnPostAdd()
         {
