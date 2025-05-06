@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 </head>
 <body>
-    <div class="container mt-5">
+        <div class="container mt-5">
         <div class="row">
+            <!-- Sol: Ekle / Güncelle -->
             <div class="col-md-4">
                 <h4>@(Model.IsEditing ? "Edit Class" : "Add Class")</h4>
                 <form method="post" asp-page-handler="@(Model.IsEditing ? "Update" : "Add")">
@@ -42,37 +43,36 @@
                         <a href="/" class="btn btn-secondary ms-2">Cancel</a>
                     }
                 </form>
+            </div>
 
-                <!-- Filtreleme Formu -->
-                <div class="card mt-4">
+            <!-- Sağ: Filtre + Tablo + Sayfalama -->
+            <div class="col-md-8">
+                <!-- Filtre -->
+                <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Filter Classes</h5>
-                        <form method="get">
-                            <div class="mb-3">
+                        <form method="get" class="row">
+                            <div class="col-md-4 mb-3">
                                 <label class="form-label">Class Name</label>
                                 <input class="form-control" asp-for="ClassNameFilter" />
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label class="form-label">Min Students</label>
-                                    <input class="form-control" asp-for="MinStudentFilter" type="number" />
-                                </div>
-                                <div class="col">
-                                    <label class="form-label">Max Students</label>
-                                    <input class="form-control" asp-for="MaxStudentFilter" type="number" />
-                                </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Min Students</label>
+                                <input class="form-control" asp-for="MinStudentFilter" type="number" />
                             </div>
-                            <div class="mt-3">
-                                <button type="submit" class="btn btn-info">Apply Filters</button>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Max Students</label>
+                                <input class="form-control" asp-for="MaxStudentFilter" type="number" />
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end mb-3">
+                                <button type="submit" class="btn btn-info w-100">Filter</button>
                                 <a href="/" class="btn btn-outline-secondary ms-2">Reset</a>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
 
-            <!-- Table ve Pagination -->
-            <div class="col-md-8">
+                <!-- Tablo -->
                 <div class="card mb-3">
                     <div class="card-body">
                         <h4 class="card-title">Class List</h4>
@@ -81,7 +81,6 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        
                                         <th>Class Name</th>
                                         <th>Student Count</th>
                                         <th>Description</th>
@@ -92,7 +91,6 @@
                                     @foreach (var item in Model.PaginatedClasses)
                                     {
                                         <tr>
-                                            
                                             <td>@item.ClassName</td>
                                             <td>@item.StudentCount</td>
                                             <td>@item.Description</td>
@@ -118,7 +116,7 @@
                     </div>
                 </div>
 
-                <!-- Pagination -->
+                <!-- Sayfalama -->
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
@@ -144,5 +142,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>
