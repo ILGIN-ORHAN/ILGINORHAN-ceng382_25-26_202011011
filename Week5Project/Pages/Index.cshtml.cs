@@ -74,11 +74,11 @@ namespace Week5Project.Pages
 
         public IActionResult OnPostAdd()
         {
-            if (!ModelState.IsValid)
-            {
-                OnGet();
-                return Page();
-            }
+           //if (!ModelState.IsValid)
+            //{
+               //OnGet();
+               // return Page();
+            //}
 
             NewClass.Id = _nextId++;
             ClassList.Add(NewClass);
